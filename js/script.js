@@ -1,9 +1,16 @@
-
 'use strict';
 
-const colors = ['yellow', 'yellowgreen', 'red', 'blue', 'cyan', 'orange', 'pink'];
+const colors = [
+  'yellow',
+  'yellowgreen',
+  'red',
+  'blue',
+  'cyan',
+  'orange',
+  'pink',
+];
 
-const randomInteger = n => Math.floor(Math.random() * n); // Random number in [0, n)
+const randomInteger = (n) => Math.floor(Math.random() * n); // Random number in [0, n)
 
 /*
  * User input
@@ -12,9 +19,11 @@ const randomInteger = n => Math.floor(Math.random() * n); // Random number in [0
 let height;
 
 while (true) {
-	height = prompt('How tall do you want the tree to be?', 10) * 1;
+  height = prompt('How tall do you want the tree to be?', 10) * 1;
 
-	if (height) { break; }
+  if (height) {
+    break;
+  }
 }
 
 /*
@@ -26,26 +35,24 @@ const tree = document.getElementById('tree');
 let count = 0;
 
 for (let i = 0; i < height - 1; i++) {
-	const row = document.createElement('div');
-//	row.id = `row-${i}`;
+  const row = document.createElement('div');
 
-	for (let j = 0; j < 2*i+1; j++) {
-		const light = document.createElement('span');
-		light.id = `light-${count++}`;
-		light.classList.add('light');
-		light.innerText = '*';
+  for (let j = 0; j < 2 * i + 1; j++) {
+    const light = document.createElement('span');
+    light.id = `light-${count++}`;
+    light.classList.add('light');
+    light.innerText = '*';
 
-		row.appendChild(light);
+    /*
+		challenge 1.0 - display the tree - set it to the DOM
+	*/
 
-		if (i === 0) {
-			light.id = 'star';
-			light.innerText = '★';
+    /*
+		challenge 1.1 - set a star at the top of the tree tip: you need also to put an id that is included on css the name of the id is  'star'
+	*/
+  }
 
-			continue;
-		}
-	}
-
-	tree.appendChild(row);
+  tree.appendChild(row);
 }
 
 const stub = document.createElement('div');
@@ -57,36 +64,26 @@ tree.appendChild(stub);
  * Events
  * -------------------------------------------------- */
 
-tree.addEventListener('mouseover', (event) => {
-	const el = event.target;
-//	el.classList.add('on');
-	if (el.classList.contains('light')) {
-		el.style.color = colors[randomInteger(colors.length)];
-	//	el.style.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-	}
-});
+/*
+	challenge 2.0 - set a light with DOM event listener when the mouse is on the specific element with the helper function "randomInteger" you will use the array colors to get a random one => * colors[randomInteger(colors.length)] *
+*/
 
-tree.addEventListener('mouseout', (event) => {
-	const el = event.target;
-	if (el.classList.contains('light')) {
-	//	el.classList.remove('on');
-		el.style.color = '';
-	}
-});
+/*
+	challenge 2.1 - reset the lights with DOM event listener when the mouse is away
+*/
 
 /*
  * Timers
  * -------------------------------------------------- */
 
 setInterval(() => {
-	const star = document.getElementById('star');
-	star.classList.toggle('on');
+  const star = document.getElementById('star');
+  star.classList.toggle('on');
 }, 2 * 1000);
 
 setInterval(() => {
-	const light = document.getElementById(`light-${randomInteger(count+1)}`);
-	if (light) {
-	//	light.classList.toggle('on');
-		light.style.color = colors[randomInteger(colors.length)];
-	}
+  const light = document.getElementById(`light-${randomInteger(count + 1)}`);
+  if (light) {
+    light.style.color = colors[randomInteger(colors.length)];
+  }
 }, 1 * 1000);
