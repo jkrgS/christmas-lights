@@ -42,14 +42,6 @@ for (let i = 0; i < height - 1; i++) {
     light.id = `light-${count++}`;
     light.classList.add('light');
     light.innerText = '*';
-
-    /*
-		challenge 1.0 - display the tree - set it to the DOM
-	*/
-
-    /*
-		challenge 1.1 - set a star at the top of the tree tip: you need also to put an id that is included on css the name of the id is  'star'
-	*/
   }
 
   tree.appendChild(row);
@@ -65,12 +57,6 @@ tree.appendChild(stub);
  * -------------------------------------------------- */
 
 /*
-	challenge 2.0 - set a light with DOM event listener when the mouse is on the specific element with the helper function "randomInteger" you will use the array colors to get a random one => * colors[randomInteger(colors.length)] *
-*/
-
-/*
-	challenge 2.1 - reset the lights with DOM event listener when the mouse is away
-*/
 
 /*
  * Timers
